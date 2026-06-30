@@ -1,0 +1,23 @@
+# Build
+build/
+
+# IDE
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Qt
+*.pro.user
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+
+# Logs & data
+data/timeline.log
+data/timeline.db*
+data/thumbs/

@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="logo.png">Img/logo-design.png</file>
+        <file>icons/play.svg</file>
+        <file>icons/pause.svg</file>
+        <file>icons/stop.svg</file>
+        <file>icons/prev.svg</file>
+        <file>icons/next.svg</file>
+        <file>icons/fullscreen.svg</file>
+        <file>icons/folder.svg</file>
+        <file>icons/add_file.svg</file>
+        <file>icons/delete.svg</file>
+        <file>icons/search.svg</file>
+        <file>icons/grid_view.svg</file>
+        <file>icons/list_view.svg</file>
+        <file>icons/volume.svg</file>
+        <file>icons/shuffle.svg</file>
+        <file>icons/repeat.svg</file>
+        <file>icons/heart.svg</file>
+    </qresource>
+</RCC>
