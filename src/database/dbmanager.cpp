@@ -226,6 +226,19 @@ void DatabaseManager::addHistory(int pid) {
     q.exec();
 }
 
+QVariantMap DatabaseManager::getLastPlayedVideo() {
+    QSqlQuery q(m_db);
+    q.exec(
+        "SELECT wp.video_id, wp.position, wp.completed, wp.last_watched,"
+        "v.playlist_id, v.file_path, v.title, v.duration "
+        "FROM watch_progress wp "
+        "JOIN videos v ON v.id = wp.video_id "
+        "ORDER BY wp.last_watched DESC LIMIT 1"
+    );
+    if (q.next()) return recordToMap(q);
+    return {};
+}
+
 QVector<QVariantMap> DatabaseManager::getHistory(int limit) {
     QSqlQuery q(m_db);
     q.prepare(

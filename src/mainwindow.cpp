@@ -4,6 +4,7 @@
 #include "utils/timeutils.h"
 #include <QApplication>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QMenuBar>
@@ -37,6 +38,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     connect(&m_saveTimer, &QTimer::timeout, this, &MainWindow::periodicSave);
     m_saveTimer.setInterval(30000);
     m_saveTimer.start();
+    restoreLastSession();
     LOG.info("MainWindow", "Application started successfully");
 }
 
@@ -358,6 +360,37 @@ void MainWindow::onPlaylistSelected(int playlistId) {
     m_splitter->setSizes({240, 500, 280, 220});
 }
 
+// ---- Last session restore ----
+
+void MainWindow::restoreLastSession() {
+    QVariantMap lastVideo = m_manager->getLastPlayedVideo();
+    if (lastVideo.isEmpty()) return;
+
+    int playlistId = lastVideo["playlist_id"].toInt();
+    int videoId = lastVideo["video_id"].toInt();
+    bool completed = lastVideo["completed"].toInt() != 0;
+    double position = lastVideo["position"].toDouble();
+
+    if (completed || position <= 0) return;
+
+    m_sidebar->selectPlaylist(playlistId);
+
+    for (int i = 0; i < m_currentVideos.size(); i++) {
+        if (m_currentVideos[i]["id"].toInt() == videoId) {
+            m_currentIndex = i;
+            m_currentVideoId = videoId;
+            break;
+        }
+    }
+
+    QString title = lastVideo["title"].toString();
+    if (title.isEmpty()) title = QFileInfo(lastVideo["file_path"].toString()).fileName();
+    QString timeStr = formatDuration(position);
+    m_status->showMessage(
+        QString(_("last_video_resume")).replace("{title}", title).replace("{time}", timeStr)
+    );
+}
+
 // ---- Playback ----
 
 void MainWindow::playVideo(int index) {
@@ -390,6 +423,10 @@ void MainWindow::onPlayVideoById(int videoId) {
 void MainWindow::onPlayPause() {
     if (m_currentVideoId < 0) {
         if (!m_currentVideos.isEmpty()) playVideo(0);
+        return;
+    }
+    if (!m_player->hasMedia()) {
+        playVideo(m_currentIndex);
         return;
     }
     m_player->togglePlayPause();

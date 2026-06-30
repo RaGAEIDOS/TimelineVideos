@@ -18,6 +18,7 @@ public:
     void addHistory(int playlistId);
     QVector<QVariantMap> getHistory(int limit = 20);
     QVector<QVariantMap> getPlaylistStats(int playlistId);
+    QVariantMap getLastPlayedVideo();
 
     DatabaseManager* db() { return m_db; }
 

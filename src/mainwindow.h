@@ -59,6 +59,7 @@ private:
     void applyTheme();
     void loadPlaylists();
     void loadHistory();
+    void restoreLastSession();
     void playVideo(int index);
     void clearCurrent();
     void updateTimelineStats();

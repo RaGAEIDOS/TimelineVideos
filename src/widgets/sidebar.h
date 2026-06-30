@@ -29,6 +29,7 @@ public:
     void loadPlaylists(const QVector<QVariantMap>& playlists);
     void loadHistory(const QVector<QVariantMap>& history);
     void clearSelection();
+    void selectPlaylist(int playlistId);
     void retranslate();
     int selectedPlaylistId() const { return m_selectedId; }
 

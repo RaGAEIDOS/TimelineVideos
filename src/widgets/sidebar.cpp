@@ -213,6 +213,18 @@ void PlaylistSidebar::clearSelection() {
     }
 }
 
+void PlaylistSidebar::selectPlaylist(int playlistId) {
+    m_selectedId = playlistId;
+    for (auto* card : m_cards) {
+        bool sel = (card->playlistId() == playlistId);
+        card->setStyleSheet(QString(
+            "PlaylistCard{background-color:%1;border-radius:8px;margin:2px 6px;}"
+            "PlaylistCard:hover{background-color:#3a3a5e;}"
+        ).arg(sel ? "#2a2a4e" : "#1e1e2e"));
+    }
+    emit playlistSelected(playlistId);
+}
+
 void PlaylistSidebar::onCardClicked(int pid) {
     m_selectedId = pid;
     emit playlistSelected(pid);

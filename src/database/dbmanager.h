@@ -32,6 +32,7 @@ public:
     // History
     void addHistory(int playlistId);
     QVector<QVariantMap> getHistory(int limit = 20);
+    QVariantMap getLastPlayedVideo();
 
 private:
     void initDb();

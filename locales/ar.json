@@ -94,5 +94,7 @@
   "theme": "المظهر",
   "support_palestine": "ادعم فلسطين \u2665",
   "controls_visible": "أزرار التحكم: ظاهرة",
-  "controls_hidden": "أزرار التحكم: مخفية"
+  "controls_hidden": "أزرار التحكم: مخفية",
+  "last_video_resume": "آخر مشاهدة: {title} - اضغط Space للاستئناف",
+  "resume_position": "استئناف من {time}"
 }

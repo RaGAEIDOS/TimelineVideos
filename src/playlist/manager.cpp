@@ -81,3 +81,7 @@ QVector<QVariantMap> PlaylistManager::getHistory(int limit) {
 QVector<QVariantMap> PlaylistManager::getPlaylistStats(int pid) {
     return m_db->getPlaylistStats(pid);
 }
+
+QVariantMap PlaylistManager::getLastPlayedVideo() {
+    return m_db->getLastPlayedVideo();
+}

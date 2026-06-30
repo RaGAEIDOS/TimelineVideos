@@ -94,5 +94,7 @@
   "theme": "Theme",
   "support_palestine": "Support Palestine \u2665",
   "controls_visible": "Controls: visible",
-  "controls_hidden": "Controls: hidden"
+  "controls_hidden": "Controls: hidden",
+  "last_video_resume": "Last watched: {title} - Press Space to resume",
+  "resume_position": "Resume from {time}"
 }

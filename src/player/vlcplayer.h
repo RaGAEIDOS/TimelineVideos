@@ -25,6 +25,7 @@ public:
     double speed() const { return m_speed; }
     bool isPlaying() const { return m_isPlaying; }
     bool isReady() const { return m_vlcOk; }
+    bool hasMedia() const { return !m_currentPath.isEmpty(); }
     double currentPosition() const;
     double duration() const;
 
