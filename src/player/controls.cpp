@@ -56,6 +56,7 @@ void PlaybackControls::setupUI() {
     connect(btnFullscreen, &QPushButton::clicked, this, &PlaybackControls::fullscreenClicked);
 
     seekSlider = new QSlider(Qt::Horizontal);
+    seekSlider->setFocusPolicy(Qt::NoFocus);
     seekSlider->setRange(0, 1000);
     seekSlider->setStyleSheet(
         "QSlider::groove:horizontal{height:4px;background:#2a2a4e;border-radius:2px;}"
@@ -72,6 +73,7 @@ void PlaybackControls::setupUI() {
     timeLabel->setStyleSheet("color:#808090;font-size:11px;padding:0 6px;");
 
     volumeSlider = new QSlider(Qt::Horizontal);
+    volumeSlider->setFocusPolicy(Qt::NoFocus);
     volumeSlider->setRange(0, 100);
     volumeSlider->setValue(100);
     volumeSlider->setFixedWidth(80);

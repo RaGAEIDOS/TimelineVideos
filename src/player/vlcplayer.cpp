@@ -6,6 +6,7 @@
 #include <QFileInfo>
 #include <QUrl>
 #include <QMouseEvent>
+#include <QEvent>
 
 VLCPlayer::VLCPlayer(QWidget* parent) : QFrame(parent) {
     setStyleSheet("background-color: #000000; border-radius: 8px;");
@@ -15,6 +16,7 @@ VLCPlayer::VLCPlayer(QWidget* parent) : QFrame(parent) {
     m_videoFrame = new QFrame();
     m_videoFrame->setStyleSheet("background-color: #000000;");
     m_videoFrame->setAutoFillBackground(true);
+    m_videoFrame->installEventFilter(this);
     lay->addWidget(m_videoFrame);
 
     qputenv("VLC_PLUGIN_PATH", "C:/Program Files/VideoLAN/VLC/plugins");
@@ -41,10 +43,12 @@ void VLCPlayer::showEvent(QShowEvent* e) {
         libvlc_media_player_set_hwnd(m_player, (void*)(intptr_t)m_videoFrame->winId());
 }
 
-void VLCPlayer::mouseDoubleClickEvent(QMouseEvent* e) {
-    if (e->button() == Qt::LeftButton)
+bool VLCPlayer::eventFilter(QObject* obj, QEvent* event) {
+    if (obj == m_videoFrame && event->type() == QEvent::MouseButtonDblClick) {
         emit fullscreenRequested();
-    QFrame::mouseDoubleClickEvent(e);
+        return true;
+    }
+    return QFrame::eventFilter(obj, event);
 }
 
 VLCPlayer::~VLCPlayer() {

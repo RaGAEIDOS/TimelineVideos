@@ -31,7 +31,7 @@ public:
 
 protected:
     void showEvent(QShowEvent* e) override;
-    void mouseDoubleClickEvent(QMouseEvent* e) override;
+    bool eventFilter(QObject* obj, QEvent* event) override;
 
 signals:
     void positionChanged(double pos, double dur);

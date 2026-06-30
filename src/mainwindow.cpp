@@ -389,6 +389,11 @@ void MainWindow::restoreLastSession() {
     m_status->showMessage(
         QString(_("last_video_resume")).replace("{title}", title).replace("{time}", timeStr)
     );
+
+    QTimer::singleShot(600, this, [this]() {
+        if (m_currentVideoId >= 0 && m_currentIndex >= 0)
+            playVideo(m_currentIndex);
+    });
 }
 
 // ---- Playback ----
@@ -526,9 +531,6 @@ void MainWindow::onFullscreen() {
 void MainWindow::keyPressEvent(QKeyEvent* event) {
     QWidget* focus = QApplication::focusWidget();
     if (qobject_cast<QLineEdit*>(focus)) {
-        QMainWindow::keyPressEvent(event); return;
-    }
-    if (qobject_cast<QSlider*>(focus)) {
         QMainWindow::keyPressEvent(event); return;
     }
 
