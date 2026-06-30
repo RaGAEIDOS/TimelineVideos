@@ -100,7 +100,7 @@ private:
     void processNextThumb();
 
     bool m_gridMode = false;
-    QString m_sortKey = "default", m_filterKey = "all", m_searchText;
+    QString m_sortKey = "0-9", m_filterKey = "all", m_searchText;
     QVector<QVariantMap> m_allVideos, m_filteredVideos;
     QVBoxLayout* m_stack = nullptr;
     QListWidget* m_listWidget = nullptr;

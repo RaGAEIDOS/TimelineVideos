@@ -33,12 +33,15 @@ VideoToolbar::VideoToolbar(QWidget* parent) : QWidget(parent) {
         "QComboBox::drop-down{border:none;width:16px;}"
         "QComboBox QAbstractItemView{background:#1a1a30;color:#fff;selection-background-color:#6c5ce7;border:none;}"
     );
+    m_sortCombo->setFocusPolicy(Qt::ClickFocus);
+    m_sortCombo->setCurrentIndex(1);
     connect(m_sortCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
         emit sortChanged(m_sortCombo->currentData().toString());
     });
     lay->addWidget(m_sortCombo);
 
     m_filterCombo = new QComboBox();
+    m_filterCombo->setFocusPolicy(Qt::ClickFocus);
     m_filterCombo->addItem(_("filter_all"), "all");
     m_filterCombo->addItem(_("filter_watched"), "watched");
     m_filterCombo->addItem(_("filter_unwatched"), "unwatched");

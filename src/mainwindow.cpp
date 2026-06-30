@@ -525,7 +525,7 @@ void MainWindow::onFullscreen() {
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {
     QWidget* focus = QApplication::focusWidget();
-    if (qobject_cast<QLineEdit*>(focus) && event->key() == Qt::Key_Space) {
+    if (qobject_cast<QLineEdit*>(focus)) {
         QMainWindow::keyPressEvent(event); return;
     }
     if (qobject_cast<QSlider*>(focus)) {

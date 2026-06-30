@@ -84,6 +84,7 @@ void PlaybackControls::setupUI() {
     connect(volumeSlider, &QSlider::valueChanged, this, &PlaybackControls::volumeChanged);
 
     speedCombo = new QComboBox();
+    speedCombo->setFocusPolicy(Qt::NoFocus);
     speedCombo->addItems({"0.25x","0.5x","0.75x","1x","1.25x","1.5x","2x"});
     speedCombo->setCurrentText("1x");
     speedCombo->setFixedWidth(60);
