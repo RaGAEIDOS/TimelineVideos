@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="TimelineVideo" Language="1033" Version="1.0.0" Manufacturer="TimelineVideo" UpgradeCode="A1B2C3D4-E5F6-7890-ABCD-EF1234567890">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Condition Message="This installer is only supported on 64-bit Windows.">
+      VersionNT64
+    </Condition>
+
+    <Icon Id="app.ico" SourceFile="Img\logo.ico" />
+    <Property Id="ARPPRODUCTICON" Value="app.ico" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLDIR" Name="TimelineVideo">
+          <Directory Id="LOCALESDIR" Name="locales" />
+          <Directory Id="DATADIR" Name="data" />
+        </Directory>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="AppProgramsFolder" Name="TimelineVideo" />
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="MainExe" Guid="E1F2A3B4-C5D6-4E7F-8A9B-0C1D2E3F4A5B">
+        <File Id="TimelineVideo.exe" Source="build\TimelineVideo.exe" KeyPath="yes" Checksum="yes" Vital="yes" />
+      </Component>
+      <Component Id="AppIcon" Guid="F2A3B4C5-D6E7-4F8A-9B0C-1D2E3F4A5B6C">
+        <File Id="logo.ico" Source="Img\logo.ico" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="LOCALESDIR">
+      <Component Id="LocaleAR" Guid="A3B4C5D6-E7F8-4A9B-0C1D-2E3F4A5B6C7D">
+        <File Id="ar.json" Source="locales\ar.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LocaleEN" Guid="B4C5D6E7-F8A9-4B0C-1D2E-3F4A5B6C7D8E">
+        <File Id="en.json" Source="locales\en.json" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DATADIR">
+      <Component Id="DataDir" Guid="C5D6E7F8-A9B0-4C1D-2E3F-4A5B6C7D8E9F">
+        <CreateFolder />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="AppProgramsFolder">
+      <Component Id="StartMenuShortcuts" Guid="D6E7F8A9-B0C1-4D2E-3F4A-5B6C7D8E9F0A">
+        <Shortcut Id="AppShortcut" Name="TimelineVideo" Description="TimelineVideo - Educational Playlist Player" Target="[INSTALLDIR]TimelineVideo.exe" WorkingDirectory="INSTALLDIR" Icon="app.ico" />
+        <Shortcut Id="UninstallShortcut" Name="Uninstall TimelineVideo" Description="Uninstall TimelineVideo" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" />
+        <RemoveFolder Id="RemoveAppProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\TimelineVideo" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="E7F8A9B0-C1D2-4E3F-4A5B-6C7D8E9F0A1B">
+        <Shortcut Id="DesktopAppShortcut" Name="TimelineVideo" Description="TimelineVideo - Educational Playlist Player" Target="[INSTALLDIR]TimelineVideo.exe" WorkingDirectory="INSTALLDIR" Icon="app.ico" />
+        <RegistryValue Root="HKCU" Key="Software\TimelineVideo" Name="desktop" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="MainFeature" Title="TimelineVideo" Level="1" Absent="disallow" Display="expand">
+      <ComponentRef Id="MainExe" />
+      <ComponentRef Id="AppIcon" />
+      <ComponentRef Id="LocaleAR" />
+      <ComponentRef Id="LocaleEN" />
+      <ComponentRef Id="DataDir" />
+      <ComponentRef Id="StartMenuShortcuts" />
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+
+    <UIRef Id="WixUI_InstallDir" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+  </Product>
+</Wix>

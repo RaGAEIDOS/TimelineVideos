@@ -9,6 +9,7 @@
     <img src="https://img.shields.io/badge/libvlc-3.x-E3070C?style=for-the-badge&logo=videolan" alt="libvlc"/>
     <img src="https://img.shields.io/badge/CMake-3.16%2B-064F8C?style=for-the-badge&logo=cmake" alt="CMake"/>
     <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT"/>
+    <img src="https://img.shields.io/badge/Installer-MSI-blue?style=for-the-badge" alt="MSI Installer"/>
   </p>
 
   <p dir="rtl">
@@ -53,18 +54,19 @@
 
 ## ⬇️ طريقة التثبيت
 
-### الخيار 1: المثبّت الآلي (مستحسن)
+### الخيار 1: مثبّت MSI (مستحسن)
 
-1. اذهب إلى [صفحة الإصدارات](https://github.com/RaGAEIDOS/TimelineVideos/releases)
-2. حمّل أحدث ملف `TimelineVideo-Setup.exe`
+1. اذهب إلى [آخر إصدار](https://github.com/RaGAEIDOS/TimelineVideos/releases/latest)
+2. حمّل ملف `TimelineVideo-1.0.0-x64.msi`
 3. شغّله واتبع التعليمات
-4. سيتم تثبيت الاختصار على سطح المكتب تلقائياً
+4. سيتم تثبيت التطبيق والاختصارات تلقائياً
 
 ### الخيار 2: تشغيل محمول (Portable)
 
-1. حمّل `TimelineVideo-Portable.zip`
-2. فك الضغط في أي مجلد
-3. شغّل `TimelineVideo.exe`
+1. اذهب إلى [صفحة الإصدارات](https://github.com/RaGAEIDOS/TimelineVideos/releases)
+2. حمّل `TimelineVideo-Portable.zip`
+3. فك الضغط في أي مجلد
+4. شغّل `TimelineVideo.exe`
 
 ## 🔧 طريقة البناء من الكود المصدري
 
@@ -147,7 +149,7 @@ TimelineVideos/
 ├── resources.qrc           # ملف موارد Qt
 ├── LICENSE                 # رخصة MIT
 ├── README.md               # هذا الملف
-├── installer.nsi           # سكريبت NSIS للمثبّت
+├── installer.wxs           # سكريبت WiX للمثبّت MSI
 ├── Img/                    # شعار التطبيق
 │   ├── logo-design.png
 │   └── logo.ico
