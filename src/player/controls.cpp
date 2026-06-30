@@ -62,7 +62,11 @@ void PlaybackControls::setupUI() {
         "QSlider::handle:horizontal{background:#6c5ce7;width:12px;height:12px;margin:-4px 0;border-radius:6px;}"
         "QSlider::sub-page:horizontal{background:#6c5ce7;border-radius:2px;}"
     );
-    connect(seekSlider, &QSlider::sliderMoved, this, &PlaybackControls::seekChanged);
+    connect(seekSlider, &QSlider::sliderMoved, this, [this](int val) {
+        emit seekChanged(val / 10.0);
+    });
+    connect(seekSlider, &QSlider::sliderPressed, this, [this]() { m_dragging = true; });
+    connect(seekSlider, &QSlider::sliderReleased, this, [this]() { m_dragging = false; });
 
     timeLabel = new QLabel("0:00 / 0:00");
     timeLabel->setStyleSheet("color:#808090;font-size:11px;padding:0 6px;");

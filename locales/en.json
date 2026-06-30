@@ -85,7 +85,7 @@
   "help": "Help",
   "shortcuts": "Keyboard Shortcuts",
   "shortcuts_title": "Keyboard Shortcuts",
-  "shortcuts_text": "Space: Play / Pause\nN: Next video\nP: Previous video\nS: Stop\nF / F11: Fullscreen\nH: Toggle controls visibility\nEscape: Exit fullscreen\n→: Next video\n←: Previous video\nShift + →: Seek forward 10s\nShift + ←: Seek backward 10s\nCtrl + ↑: Volume up\nCtrl + ↓: Volume down\nCtrl + F: Add folder\nCtrl + O: Add videos\nCtrl + Q: Quit\nCtrl + G: Grid view\nCtrl + L: List view\nCtrl + K: Show shortcuts",
+  "shortcuts_text": "Space: Play / Pause\nN: Next video\nP: Previous video\nS: Stop\nF / F11: Fullscreen\nH: Toggle controls visibility\nEscape: Exit fullscreen\n→: Seek forward 5s\n←: Seek backward 5s\n↑: Volume up\n↓: Volume down\nCtrl + F: Add folder\nCtrl + O: Add videos\nCtrl + Q: Quit\nCtrl + G: Grid view\nCtrl + L: List view\nCtrl + K: Show shortcuts",
   "ok": "OK",
   "playlist_info": "Playlist Info",
   "video_count": "Videos",

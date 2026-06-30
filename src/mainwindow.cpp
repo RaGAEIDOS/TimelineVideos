@@ -536,16 +536,10 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
     case Qt::Key_Escape: if (m_isFullscreen) onFullscreen(); break;
     case Qt::Key_F11: onFullscreen(); break;
     case Qt::Key_Space: onPlayPause(); break;
-    case Qt::Key_Right:
-        if (event->modifiers() == Qt::ShiftModifier) onSeekRelative(10);
-        else onNext();
-        break;
-    case Qt::Key_Left:
-        if (event->modifiers() == Qt::ShiftModifier) onSeekRelative(-10);
-        else onPrevious();
-        break;
-    case Qt::Key_Up: if (event->modifiers() == Qt::ControlModifier) onVolumeChange(5); break;
-    case Qt::Key_Down: if (event->modifiers() == Qt::ControlModifier) onVolumeChange(-5); break;
+    case Qt::Key_Right: onSeekRelative(5); break;
+    case Qt::Key_Left: onSeekRelative(-5); break;
+    case Qt::Key_Up: onVolumeChange(5); break;
+    case Qt::Key_Down: onVolumeChange(-5); break;
     case Qt::Key_N: onNext(); break;
     case Qt::Key_P: onPrevious(); break;
     case Qt::Key_S: onStop(); break;
