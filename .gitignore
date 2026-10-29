@@ -1,0 +1,27 @@
+# --- virtualenvs (recreated by run.sh / build_windows.bat) ---
+venv/
+.venv/
+env/
+
+# --- PyInstaller / packaging outputs ---
+build/
+dist/
+deb_repo/
+*.pyz
+
+# --- Python cache ---
+__pycache__/
+*.py[cod]
+*.spec.bak
+
+# --- local runtime data (belongs to the user, not the repo) ---
+# (workspace DBs live next to the videos, not here — just in case:)
+*.db
+.timeline_videos.json
+
+# --- editors / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

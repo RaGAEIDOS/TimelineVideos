@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Timeline Videos
+Name[ar]=تايم لاين فيديوهات
+GenericName=Video Playlist Manager
+GenericName[ar]=مدير قوائم الفيديو
+Comment=Track watched videos in a local database — YouTube-style
+Comment[ar]=تابع الفيديوهات المشاهدة في قاعدة بيانات محلية — زي يوتيوب
+Exec=/home/meuor/Projects/timeline_videos/video_player/run.sh
+Icon=/home/meuor/Projects/timeline_videos/video_player/assets/icon_mark.png
+Terminal=false
+Categories=AudioVideo;Video;Player;
+Keywords=video;playlist;watched;youtube;
+StartupWMClass=main.py
