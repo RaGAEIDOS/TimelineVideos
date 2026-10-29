@@ -85,28 +85,31 @@ Notes on the package:
   auto-installed by apt as *Recommends*; if your distro's yt-dlp is
   too old for YouTube, `pip install -U yt-dlp` gets you the latest.
 
-### Install via your own APT repository (GitHub Pages)
+### Install via the project's APT repository (GitHub Pages)
 
-`make_apt_repo.sh` builds a static APT repo in `deb_repo/` that you can
-host on GitHub Pages, so users can `apt update && apt install
-timeline-videos` straight from your repo:
-
-```bash
-./make_apt_repo.sh                      # unsigned build
-GPG_KEY=<keyid> ./make_apt_repo.sh      # signed build (+ exports key.gpg)
-```
-
-Then push the contents of `deb_repo/` to a `gh-pages` branch and users add:
+The project ships a GPG-signed APT repository on GitHub Pages, so
+`apt` can install and update it like any Debian package:
 
 ```bash
-echo 'deb [trusted=yes] https://RAGAEIDOS.github.io/TimelineVideos/ ./' | \
+# 1. add the repository signing key
+curl -fsSL https://RAGAEIDOS.github.io/TimelineVideos/key.gpg | \
+    sudo gpg --dearmor -o /usr/share/keyrings/timeline-videos.gpg
+
+# 2. add the repository
+echo "deb [signed-by=/usr/share/keyrings/timeline-videos.gpg] https://RAGAEIDOS.github.io/TimelineVideos/ ./" | \
     sudo tee /etc/apt/sources.list.d/timeline-videos.list
+
+# 3. install (and later: sudo apt update && sudo apt upgrade timeline-videos)
 sudo apt update && sudo apt install timeline-videos
 ```
 
-(With a GPG-signed build, replace `[trusted=yes]` with
-`[signed-by=/usr/share/keyrings/timeline-videos.gpg]` after fetching
-`key.gpg`.)
+Maintainer note — publishing a new version:
+
+```bash
+./build_deb.sh                            # build dist/deb/*.deb
+GPG_KEY=<fingerprint> ./make_apt_repo.sh   # rebuild deb_repo/ (signed)
+# commit the new deb_repo/ contents to the gh-pages branch and push
+```
 
 About the **official Debian repositories**: that route means filing an
 ITP bug, passing the NEW queue and Debian Policy review, and maintaining
