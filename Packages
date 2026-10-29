@@ -1,0 +1,25 @@
+Package: timeline-videos
+Version: 2.1-1
+Architecture: all
+Maintainer: Ragaey <ragaeidos@users.noreply.github.com>
+Installed-Size: 4188
+Depends: python3 (>= 3.10), python3-pyqt5
+Recommends: yt-dlp, ffmpeg
+Filename: ./timeline-videos_2.1-1_all.deb
+Size: 560844
+MD5sum: c146347f9fd9ecae6444f55aa4d8da3a
+SHA1: a80d1d384f67194ebcd5f4c5190a3d73c5759661
+SHA256: 4b57fd43a2282ad52b8ff472193985191015b6582033c7f180d957543938eef0
+Section: video
+Priority: optional
+Homepage: https://github.com/RaGAEIDOS/TimelineVideos
+Description: Bilingual (Arabic/English) video playlist manager
+ Timeline Videos scans a folder of videos, sorts them (episode
+ number, name, size, date, YouTube playlist order) and tracks what
+ you watched in a small per-folder SQLite database — YouTube-style,
+ without ever moving the files. Playback is handed to the system's
+ default player (mpv, VLC, ...). Subtitle files (SRT/VTT) are
+ listed next to each video; durations are read with ffprobe.
+ .
+ The interface is Arabic (RTL) and English, switchable at runtime.
+
